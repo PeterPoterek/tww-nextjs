@@ -1,6 +1,4 @@
 import { signIn } from "@/app/auth";
-import prisma from "@/lib/db";
-import { verifyPassword, hashPassword } from "@/lib/utils";
 
 const SignIn = () => {
   return (
