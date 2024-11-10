@@ -1,8 +1,8 @@
 "use client";
 
-import { signIn } from "next-auth/react"; // Use client version of signIn
-import { useToast } from "@/hooks/use-toast"; // Import shadcn's useToast hook
-import { useRouter } from "next/navigation"; // Import Next.js router for redirect
+import { signIn } from "next-auth/react";
+import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const SignIn = () => {
@@ -14,21 +14,19 @@ const SignIn = () => {
     setLoading(true);
     try {
       const result = await signIn("credentials", {
-        redirect: false, // Prevent automatic redirection
+        redirect: false,
         username: formData.get("username"),
         password: formData.get("password"),
       });
 
-      if (result?.ok) {
-        // Redirect to dashboard if sign-in is successful
-        router.push("/dashboard");
-      } else {
-        // Trigger toast if sign-in fails
+      if (result?.error) {
         toast({
           title: "Sign-In Failed",
           description: "Invalid username or password.",
           variant: "destructive",
         });
+      } else {
+        router.push("/dashboard");
       }
     } catch (err) {
       console.error("Error during sign-in:", err);
