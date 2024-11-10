@@ -4,6 +4,7 @@ import { signIn } from "next-auth/react";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Button } from "./ui/button";
 
 const SignIn = () => {
   const { toast } = useToast();
@@ -57,9 +58,9 @@ const SignIn = () => {
         Password
         <input name="password" type="password" required />
       </label>
-      <button type="submit" className="self-start" disabled={loading}>
+      <Button type="submit" className="self-start" disabled={loading}>
         {loading ? "Signing In..." : "Sign In"}
-      </button>
+      </Button>
     </form>
   );
 };
