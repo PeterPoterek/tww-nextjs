@@ -1,6 +1,6 @@
 "use client";
 
-import { UploadButton } from "@/lib/uploadthing";
+import { UploadButton } from "@/lib/image-upload";
 
 const Upload = () => {
   return (
