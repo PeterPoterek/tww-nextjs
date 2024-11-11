@@ -4,14 +4,14 @@ import { redirect } from "next/navigation";
 import Upload from "@/components/upload";
 import prisma from "@/lib/db";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 
 import { formatDate } from "@/lib/utils";
 import PaginationControler from "@/components/pagination-controler";
+import RemoveEntryButton from "@/components/remove-entry-button";
+import { UTApi } from "uploadthing/server";
 
 const page = async ({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) => {
   const session = await auth();
-
   console.log(await session);
 
   if (!session) redirect("/login");
@@ -34,6 +34,22 @@ const page = async ({ searchParams }: { searchParams: { [key: string]: string | 
     console.log(result.fileName);
   });
 
+  const removeEntry = async (id: string) => {
+    "use server";
+    const utapi = new UTApi();
+
+    try {
+      const entry = await prisma.galleryImage.delete({
+        where: { id },
+      });
+      const key = entry.url.slice(18);
+
+      await utapi.deleteFiles(key);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div>
       <div className="flex flex-col justify-center items-center max-w-3xl gap-5 ">
@@ -53,7 +69,7 @@ const page = async ({ searchParams }: { searchParams: { [key: string]: string | 
                 <Image src={url} alt="image" width={75} height={75} />
                 <span>{fileName}</span>
                 <span>{formatDate(createdAt)}</span>
-                <Button>X</Button>
+                <RemoveEntryButton id={id} removeEntry={removeEntry} />
               </li>
             ))}
           </ul>

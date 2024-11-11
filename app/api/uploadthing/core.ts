@@ -30,7 +30,7 @@ export const ourFileRouter = {
       console.log("file url", file.url);
 
       try {
-        await prisma.galleryImage.create({
+        const newImage = await prisma.galleryImage.create({
           data: {
             url: file.url as string,
             userId: metadata.userId as string,
@@ -38,7 +38,7 @@ export const ourFileRouter = {
           },
         });
 
-        console.log("Image record successfully created in the database");
+        console.log("Image record successfully created in the database", newImage);
       } catch (error) {
         console.error("Error saving image record to the database:", error);
       }
