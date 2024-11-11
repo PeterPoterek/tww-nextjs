@@ -5,26 +5,31 @@ import Upload from "@/components/upload";
 import prisma from "@/lib/db";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
-import { formatDate } from "@/lib/utils";
 
-const page = async () => {
+import { formatDate } from "@/lib/utils";
+import PaginationControler from "@/components/pagination-controler";
+
+const page = async ({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) => {
   const session = await auth();
 
-  console.log(session);
+  console.log(await session);
 
   if (!session) redirect("/login");
 
   const gallery = await prisma.galleryImage.findMany();
   console.log(gallery);
+
+  const page = (await searchParams["page"]) ?? 1;
+  const per_page = (await searchParams["per_page"]) ?? 5;
+
+  const entries = await prisma.galleryImage.findMany({
+    skip: (Number(page) - 1) * Number(per_page),
+    take: Number(per_page),
+  });
+
+  entries.map((result) => {
+    console.log(result.fileName);
+  });
 
   return (
     <div>
@@ -40,7 +45,7 @@ const page = async () => {
 
         <div>
           <ul className="flex flex-col gap-5 p-5 justify-center items-center ">
-            {gallery.map(({ id, fileName, url, createdAt }) => (
+            {entries.map(({ id, fileName, url, createdAt }) => (
               <li key={id} className="flex items-center gap-1 ">
                 <Image src={url} alt="image" width={75} height={75} />
                 <span>{fileName}</span>
@@ -51,22 +56,7 @@ const page = async () => {
           </ul>
 
           <div>
-            <Pagination>
-              <PaginationContent>
-                <PaginationItem>
-                  <PaginationPrevious href="#" />
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">1</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationEllipsis />
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationNext href="#" />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
+            <PaginationControler />
           </div>
         </div>
       </div>
