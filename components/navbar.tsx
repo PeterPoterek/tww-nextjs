@@ -1,15 +1,15 @@
 import Link from "next/link";
+import { auth } from "@/app/auth";
+const Navbar = async () => {
+  const session = await auth();
 
-const Navbar = () => {
   return (
     <div>
       <menu className="flex gap-5 justify-center items-center p-5">
         <li>
           <Link href="/">Home</Link>
         </li>
-        <li>
-          <Link href="/login">Login</Link>
-        </li>
+        <li>{!session ? <Link href="/login">Login</Link> : <Link href="/dashboard">Dashboard</Link>}</li>
         <li>
           <Link href="/gallery">Gallery</Link>
         </li>

@@ -1,6 +1,7 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
 import { auth } from "@/app/auth";
+import prisma from "@/lib/db";
 
 const f = createUploadthing();
 
@@ -20,7 +21,7 @@ export const ourFileRouter = {
       }
 
       // Return user ID to pass to the onUploadComplete callback
-      return { userId: session.user.id };
+      return { userId: session.user.name };
     })
     .onUploadComplete(async ({ metadata, file }) => {
       // This code RUNS ON YOUR SERVER after upload

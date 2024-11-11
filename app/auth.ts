@@ -10,7 +10,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         username: {},
         password: {},
       },
-
       authorize: async (credentials) => {
         if (!credentials) {
           console.log("No credentials provided.");
@@ -39,11 +38,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
-
   callbacks: {
     async signIn({ user }) {
       console.log("Sign-in attempt:", user ? "Success" : "Failed");
       return !!user;
+    },
+    async session({ session, token }) {
+      if (token?.id) {
+        session.user.id = token.id as string;
+      }
+      return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
     },
   },
 });
