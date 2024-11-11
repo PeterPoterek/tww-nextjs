@@ -1,6 +1,7 @@
 import { auth } from "../auth";
 import SignOut from "@/components/sign-out";
 import { redirect } from "next/navigation";
+import Upload from "@/components/upload";
 
 const page = async () => {
   const session = await auth();
@@ -10,8 +11,14 @@ const page = async () => {
   return (
     <div>
       <div className="flex flex-col justify-center items-center max-w-3xl gap-5 ">
-        Current user: <p className="font-bold">{session?.user?.name}</p>
-        <SignOut />
+        <div>
+          Current user: <p className="font-bold">{session?.user?.name}</p>
+          <SignOut />
+        </div>
+
+        <div>
+          <Upload />
+        </div>
       </div>
     </div>
   );
