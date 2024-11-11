@@ -9,10 +9,16 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { FC } from "react";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import { Button } from "./ui/button";
+interface PaginationControlsProps {
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+}
 
-const PaginationControler = () => {
+const PaginationControler: FC<PaginationControlsProps> = ({ hasNextPage, hasPrevPage }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -23,26 +29,28 @@ const PaginationControler = () => {
     <Pagination>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious
-            href="#"
-            onClick={() => {
-              router.push(`dashboard/?page=${Number(page) - 1}&per_page=${per_page}`);
-            }}
-          />
+          <button disabled={!hasPrevPage}>
+            <PaginationPrevious
+              href="#"
+              onClick={() => {
+                router.push(`dashboard/?page=${Number(page) - 1}&per_page=${per_page}`);
+              }}
+            />
+          </button>
         </PaginationItem>
         <PaginationItem>
           <PaginationLink href="#">{page}</PaginationLink>
         </PaginationItem>
+
         <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext
-            href="#"
-            onClick={() => {
-              router.push(`dashboard/?page=${Number(page) + 1}&per_page=${per_page}`);
-            }}
-          />
+          <button disabled={!hasNextPage}>
+            <PaginationNext
+              href="#"
+              onClick={() => {
+                router.push(`dashboard/?page=${Number(page) + 1}&per_page=${per_page}`);
+              }}
+            />
+          </button>
         </PaginationItem>
       </PaginationContent>
     </Pagination>

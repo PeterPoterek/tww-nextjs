@@ -27,6 +27,9 @@ const page = async ({ searchParams }: { searchParams: { [key: string]: string | 
     take: Number(per_page),
   });
 
+  const start = (Number(page) - 1) * Number(per_page);
+  const end = start + Number(per_page);
+
   entries.map((result) => {
     console.log(result.fileName);
   });
@@ -56,7 +59,7 @@ const page = async ({ searchParams }: { searchParams: { [key: string]: string | 
           </ul>
 
           <div>
-            <PaginationControler />
+            <PaginationControler hasNextPage={end < gallery.length} hasPrevPage={start > 0} />
           </div>
         </div>
       </div>
