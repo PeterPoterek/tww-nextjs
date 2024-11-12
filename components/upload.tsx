@@ -34,9 +34,9 @@ const Upload = () => {
           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
           disabled:opacity-50 disabled:pointer-events-none ring-offset-background
           border border-input
-          bg-zinc-900 hover:text-accent-foreground
+          bg-background hover:text-accent-foreground
           hover:bg-accent
-          h-10 py-2 px-4
+          h-9 py-2 px-4
           ut-ready:bg-transparent ut-ready:text-primary
           ut-uploading:cursor-not-allowed ut-uploading:text-muted-foreground ut-uploading:bg-muted
           ut-finished:bg-green-500 ut-finished:text-white

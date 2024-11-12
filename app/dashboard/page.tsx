@@ -1,7 +1,5 @@
 import { auth } from "../auth";
-import SignOut from "@/components/sign-out";
 import { redirect } from "next/navigation";
-import Upload from "@/components/upload";
 import prisma from "@/lib/db";
 import Image from "next/image";
 
@@ -9,6 +7,7 @@ import { formatDate } from "@/lib/utils";
 import PaginationControler from "@/components/pagination-controler";
 import RemoveEntryButton from "@/components/remove-entry-button";
 import { UTApi } from "uploadthing/server";
+import UserCard from "@/components/user-card";
 
 const page = async ({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) => {
   const session = await auth();
@@ -51,16 +50,9 @@ const page = async ({ searchParams }: { searchParams: { [key: string]: string | 
   };
 
   return (
-    <div>
+    <div className="flex justify-center">
       <div className="flex flex-col justify-center items-center max-w-3xl gap-5 ">
-        <div>
-          Current user: <p className="font-bold">{session?.user?.name}</p>
-          <SignOut />
-        </div>
-
-        <div>
-          <Upload />
-        </div>
+        <UserCard username={session?.user?.name as string} />
 
         <div>
           <ul className="flex flex-col gap-5 p-5 justify-center items-center ">
