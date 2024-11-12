@@ -8,6 +8,9 @@ import PaginationControler from "@/components/pagination-controler";
 import RemoveEntryButton from "@/components/remove-entry-button";
 import { UTApi } from "uploadthing/server";
 import UserCard from "@/components/user-card";
+import { DataTable } from "@/components/data-table";
+import { columns } from "@/components/columns";
+import { format } from "date-fns";
 
 const page = async ({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) => {
   const session = await auth();
@@ -16,7 +19,10 @@ const page = async ({ searchParams }: { searchParams: { [key: string]: string | 
   if (!session) redirect("/login");
 
   const gallery = await prisma.galleryImage.findMany();
-  console.log(gallery);
+  const formattedGallery = gallery.map((image) => ({
+    ...image,
+    createdAt: format(image.createdAt, "dd.MM.yy"),
+  }));
 
   const page = (await searchParams["page"]) ?? 1;
   const per_page = (await searchParams["per_page"]) ?? 5;
@@ -54,22 +60,7 @@ const page = async ({ searchParams }: { searchParams: { [key: string]: string | 
       <div className="flex flex-col justify-center items-center max-w-3xl gap-5 ">
         <UserCard username={session?.user?.name as string} />
 
-        <div>
-          <ul className="flex flex-col gap-5 p-5 justify-center items-center ">
-            {entries.map(({ id, fileName, url, createdAt }) => (
-              <li key={id} className="flex items-center gap-1 ">
-                <Image src={url} alt="image" width={75} height={75} />
-                <span>{fileName}</span>
-                <span>{formatDate(createdAt)}</span>
-                <RemoveEntryButton id={id} fileName={fileName} removeEntry={removeEntry} />
-              </li>
-            ))}
-          </ul>
-
-          <div>
-            <PaginationControler hasNextPage={end < gallery.length} hasPrevPage={start > 0} />
-          </div>
-        </div>
+        <DataTable columns={columns} data={formattedGallery} />
       </div>
     </div>
   );
