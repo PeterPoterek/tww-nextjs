@@ -1,7 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react";
+import { MoreHorizontal, ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -23,7 +23,7 @@ export type GalleryImage = {
 export const columns: ColumnDef<GalleryImage>[] = [
   {
     accessorKey: "url",
-    header: "Url",
+    header: "Zdjęcie",
     cell: ({ row }) => {
       const url = row.getValue("url") as string;
       const fileName = row.getValue("fileName") as string;
@@ -37,12 +37,26 @@ export const columns: ColumnDef<GalleryImage>[] = [
 
   {
     accessorKey: "fileName",
-    header: "Nazwa",
+    header: ({ column }) => {
+      return (
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+          Nazwa
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
   },
 
   {
     accessorKey: "createdAt",
-    header: "Data",
+    header: ({ column }) => {
+      return (
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+          Data
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
   },
 
   {
@@ -57,7 +71,7 @@ export const columns: ColumnDef<GalleryImage>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuLabel>Akcje</DropdownMenuLabel>
             <DropdownMenuItem
               onClick={() => {
                 const url = row.getValue("url") as string;
