@@ -29,7 +29,7 @@ const RemoveEntryButton: FC<RemoveEntryButtonProps> = ({ id, fileName, removeEnt
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
+      <AlertDialogTrigger>
         <Button variant={"destructive"}>
           <Trash2 size={16} />
         </Button>
