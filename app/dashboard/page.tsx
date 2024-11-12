@@ -22,6 +22,7 @@ const page = async ({ searchParams }: { searchParams: { [key: string]: string | 
   const formattedGallery = gallery.map((image) => ({
     ...image,
     createdAt: format(image.createdAt, "dd.MM.yy"),
+    fileName: image.fileName.length > 20 ? `${image.fileName.slice(0, 20)}...` : image.fileName,
   }));
 
   const page = (await searchParams["page"]) ?? 1;
