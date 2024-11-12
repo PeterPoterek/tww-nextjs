@@ -69,7 +69,7 @@ const page = async ({ searchParams }: { searchParams: { [key: string]: string | 
                 <Image src={url} alt="image" width={75} height={75} />
                 <span>{fileName}</span>
                 <span>{formatDate(createdAt)}</span>
-                <RemoveEntryButton id={id} removeEntry={removeEntry} />
+                <RemoveEntryButton id={id} fileName={fileName} removeEntry={removeEntry} />
               </li>
             ))}
           </ul>
