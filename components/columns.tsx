@@ -12,7 +12,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
-import RemoveEntryButton from "./remove-entry-button";
 
 export type GalleryImage = {
   id: string;
