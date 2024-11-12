@@ -1,16 +1,17 @@
 import { signOut } from "@/app/auth";
-import { Button } from "./ui/button";
+import SignOutButton from "./sign-out-button";
 
 const SignOut = () => {
   return (
     <div>
       <form
+        id="signOutForm"
         action={async () => {
           "use server";
           await signOut();
         }}
       >
-        <Button type="submit">Sign Out</Button>
+        <SignOutButton />
       </form>
     </div>
   );
