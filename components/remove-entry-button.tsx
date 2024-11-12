@@ -12,6 +12,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { Trash2 } from "lucide-react";
 
 import { FC } from "react";
 
@@ -29,7 +30,9 @@ const RemoveEntryButton: FC<RemoveEntryButtonProps> = ({ id, fileName, removeEnt
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant={"destructive"}>X</Button>
+        <Button variant={"destructive"}>
+          <Trash2 size={16} />
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -40,7 +43,7 @@ const RemoveEntryButton: FC<RemoveEntryButtonProps> = ({ id, fileName, removeEnt
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Anuluj</AlertDialogCancel>
-          <AlertDialogAction onClick={handleRemove}>Kontynuuj</AlertDialogAction>
+          <AlertDialogAction onClick={handleRemove}>Potwierdź</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
