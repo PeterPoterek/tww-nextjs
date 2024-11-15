@@ -3,6 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal, ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
+import { useState } from "react";
 
 export type GalleryImage = {
   id: string;
@@ -25,11 +27,21 @@ export const columns: ColumnDef<GalleryImage>[] = [
     accessorKey: "url",
     header: "Zdjęcie",
     cell: ({ row }) => {
+      const [isLoading, setIsLoading] = useState(true);
       const url = row.getValue("url") as string;
       const fileName = row.getValue("fileName") as string;
+
       return (
         <div className="w-20 h-20 relative">
-          <Image src={url} alt={fileName} fill style={{ objectFit: "cover" }} className="rounded-md" />
+          {isLoading && <Skeleton className="w-full h-full rounded-md" />}
+          <Image
+            src={url}
+            alt={fileName}
+            fill
+            style={{ objectFit: "cover" }}
+            className={`rounded-md transition-opacity duration-300 ${isLoading ? "opacity-0" : "opacity-100"}`}
+            onLoad={() => setIsLoading(false)}
+          />
         </div>
       );
     },
