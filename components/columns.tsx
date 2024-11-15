@@ -26,10 +26,12 @@ export const columns: ColumnDef<GalleryImage>[] = [
   {
     accessorKey: "url",
     header: "Zdjęcie",
-    cell: ({ row }) => {
+    cell: ({ row, table }) => {
       const [isLoading, setIsLoading] = useState(true);
       const url = row.getValue("url") as string;
       const fileName = row.getValue("fileName") as string;
+
+      const isFirstPage = table.getState().pagination.pageIndex === 0;
 
       return (
         <div className="w-20 h-20 relative">
@@ -41,6 +43,8 @@ export const columns: ColumnDef<GalleryImage>[] = [
             style={{ objectFit: "cover" }}
             className={`rounded-md transition-opacity duration-300 ${isLoading ? "opacity-0" : "opacity-100"}`}
             onLoad={() => setIsLoading(false)}
+            priority={isFirstPage}
+            sizes="80px"
           />
         </div>
       );
