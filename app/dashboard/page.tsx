@@ -6,12 +6,15 @@ import UserCard from "@/components/user-card";
 import { DataTable } from "@/components/data-table";
 import { columns } from "@/components/columns";
 
+import { getGalleryImages } from "../actions";
+
 const Page = async () => {
   const session = await auth();
 
   if (!session) redirect("/login");
 
-  const gallery = await prisma.galleryImage.findMany();
+  const gallery = await getGalleryImages();
+
   const formattedGallery = gallery.map((image) => ({
     ...image,
     createdAt: format(image.createdAt, "dd.MM.yy"),
