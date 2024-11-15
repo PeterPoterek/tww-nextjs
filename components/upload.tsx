@@ -59,6 +59,7 @@ const Upload = () => {
             description: `Zdjęcia zostały dodane`,
           });
         }
+        window.location.reload();
       }}
       onUploadError={(error: Error) => {
         toast({
