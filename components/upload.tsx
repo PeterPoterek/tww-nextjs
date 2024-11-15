@@ -39,7 +39,7 @@ const Upload = () => {
           h-9 py-2 px-4
           ut-ready:bg-transparent ut-ready:text-primary
           ut-uploading:cursor-not-allowed ut-uploading:text-muted-foreground ut-uploading:bg-muted
-          ut-finished:bg-green-500 ut-finished:text-white
+          ut-finished:bg-green-500 ut-finished:text-white cursor-pointer
         `,
         container: "w-max",
         allowedContent: "hidden",

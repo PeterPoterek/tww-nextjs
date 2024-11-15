@@ -129,7 +129,8 @@ export const columns: ColumnDef<GalleryImage>[] = [
 
                   <AlertDialogAction
                     onClick={() => {
-                      console.log("Entry Deleted");
+                      const id = row.original.id;
+                      console.log(id);
                     }}
                   >
                     Usuń
