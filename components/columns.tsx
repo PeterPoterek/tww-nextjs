@@ -26,6 +26,7 @@ import {
 
 import Image from "next/image";
 import { useState } from "react";
+import { deleteGalleryImage } from "@/app/actions";
 
 export type GalleryImage = {
   id: string;
@@ -128,9 +129,14 @@ export const columns: ColumnDef<GalleryImage>[] = [
                   <AlertDialogCancel>Anuluj</AlertDialogCancel>
 
                   <AlertDialogAction
-                    onClick={() => {
+                    onClick={async () => {
                       const id = row.original.id;
-                      console.log(id);
+                      try {
+                        await deleteGalleryImage(id);
+                        window.location.reload();
+                      } catch (error) {
+                        console.error("Error deleting image:", error);
+                      }
                     }}
                   >
                     Usuń
