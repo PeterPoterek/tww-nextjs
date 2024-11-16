@@ -10,12 +10,12 @@ const SignInButton = ({ loading }: SignInButtonProps) => {
     <Button variant={"outline"} type="submit" className="w-64 self-center" disabled={loading}>
       {loading ? (
         <div className="flex justify-center items-center gap-2">
-          <span>Signing In...</span>
+          <span>Logowanie...</span>
           <Loader2 className="animate-spin" size={16} />
         </div>
       ) : (
         <div className="flex justify-center items-center gap-1">
-          <span>Sign In</span>
+          <span>Zaloguj się</span>
           <LogIn size={16} />
         </div>
       )}

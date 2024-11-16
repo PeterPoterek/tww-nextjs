@@ -22,7 +22,7 @@ interface DataTableProps<TData, TValue> {
 }
 
 export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = useState<SortingState>([]);
+  const [sorting, setSorting] = useState<SortingState>([{ id: "createdAt", desc: true }]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const table = useReactTable({
@@ -34,6 +34,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
       pagination: {
         pageSize: 3,
       },
+      sorting: [{ id: "createdAt", desc: true }],
     },
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
@@ -48,7 +49,6 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
   return (
     <div className="w-full max-w-3xl mx-auto">
       {/* Filter Input */}
-
       <div className="flex justify-center mb-4">
         <Input
           placeholder="Wyszukaj Zdjęcia"
@@ -59,7 +59,6 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
       </div>
 
       {/* Data Table */}
-
       <div className="rounded-md border overflow-hidden">
         <div className="overflow-x-auto">
           <Table className="min-w-full">
@@ -95,8 +94,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
         </div>
       </div>
 
-      {/*      Pagination   */}
-
+      {/* Pagination */}
       <div className="flex justify-center space-x-2 py-4">
         <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
           Poprzednia
