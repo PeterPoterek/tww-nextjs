@@ -3,7 +3,7 @@
 import { useToast } from "@/hooks/use-toast";
 import { UploadButton } from "@/lib/image-upload";
 import { twMerge } from "tailwind-merge";
-import { Upload as UploadIcon } from "lucide-react";
+import { Loader2, Upload as UploadIcon } from "lucide-react";
 
 const Upload = () => {
   const { toast } = useToast();
@@ -11,19 +11,43 @@ const Upload = () => {
   return (
     <UploadButton
       content={{
-        button({ ready }) {
-          if (ready)
+        button({ ready, isUploading }) {
+          if (isUploading) {
+            return (
+              <div className="flex items-center gap-2">
+                <span>Wgrywam pliki...</span>
+                <Loader2 className="animate-spin" size={16} />
+              </div>
+            );
+          }
+
+          if (ready) {
             return (
               <div className="flex items-center gap-2">
                 <span>Dodaj Zdjęcie</span>
                 <UploadIcon size={16} />
               </div>
             );
-          return "Przygotowuję...";
+          }
+
+          return (
+            <div className="flex items-center gap-2">
+              <span>Przygotowuję...</span>
+              <Loader2 className="animate-spin" size={16} />
+            </div>
+          );
         },
         allowedContent({ ready, fileTypes, isUploading }) {
+          if (isUploading) {
+            return (
+              <div className="flex items-center gap-2">
+                <span>Wgrywam pliki...</span>
+                <Loader2 className="animate-spin" size={16} />
+              </div>
+            );
+          }
+
           if (!ready) return "Sprawdzanie dozwolonych formatów";
-          if (isUploading) return "Wgrywam pliki...";
           return `Dozwolone formaty: ${fileTypes.join(", ")}`;
         },
       }}
