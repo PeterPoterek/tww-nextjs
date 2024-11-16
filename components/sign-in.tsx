@@ -4,9 +4,12 @@ import { signIn } from "next-auth/react";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import SignInButton from "./sign-in-button";
 
-const SignIn = () => {
+export default function SignIn() {
   const { toast } = useToast();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -22,18 +25,18 @@ const SignIn = () => {
 
       if (result?.error) {
         toast({
-          title: "Sign-In Failed",
-          description: "Invalid username or password.",
+          title: "Błąd logowania",
+          description: "Nieprawidłowa nazwa użytkownika lub hasło.",
           variant: "destructive",
         });
       } else {
         router.push("/dashboard");
       }
     } catch (err) {
-      console.error("Error during sign-in:", err);
+      console.error("Błąd logowania:", err);
       toast({
-        title: "An error occurred",
-        description: "Unable to sign in. Please try again later.",
+        title: "Wystąpił błąd",
+        description: "Nie udało się zalogować. Proszę spróbować ponownie później.",
         variant: "destructive",
       });
     } finally {
@@ -42,27 +45,34 @@ const SignIn = () => {
   };
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        handleSubmit(formData);
-      }}
-      className="flex flex-col gap-5"
-    >
-      <label>
-        Username
-        <input name="username" type="text" required />
-      </label>
-      <label>
-        Password
-        <input name="password" type="password" required />
-      </label>
-      <Button type="submit" className="self-start" disabled={loading}>
-        {loading ? "Signing In..." : "Sign In"}
-      </Button>
-    </form>
+    <div className="flex justify-center items-center min-h-screen ">
+      <Card className="w-full max-w-md mx-auto shadow-lg rounded-xl">
+        <CardHeader>
+          <CardTitle className="text-3xl font-semibold">Logowanie</CardTitle>
+          <CardDescription className="text-sm">Wprowadź swoje dane, aby uzyskać dostęp do swojego konta</CardDescription>
+        </CardHeader>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const formData = new FormData(e.currentTarget);
+            handleSubmit(formData);
+          }}
+        >
+          <CardContent className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="username">Nazwa użytkownika</Label>
+              <Input id="username" name="username" type="text" required />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password">Hasło</Label>
+              <Input id="password" name="password" type="password" required />
+            </div>
+          </CardContent>
+          <CardFooter className="flex justify-center">
+            <SignInButton loading={loading} />
+          </CardFooter>
+        </form>
+      </Card>
+    </div>
   );
-};
-
-export default SignIn;
+}

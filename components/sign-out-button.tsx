@@ -24,7 +24,7 @@ const SignOutButton = () => {
       <AlertDialogTrigger asChild>
         <Button variant="outline">
           <span>Wyloguj</span>
-          <LogOut className="h-4 w-4" />
+          <LogOut size={16} />
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
