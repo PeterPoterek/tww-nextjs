@@ -8,9 +8,10 @@ type GalleryImageProps = {
   src: string;
   alt: string;
   isGridImage: boolean;
+  index?: number;
 };
 
-export default function GalleryImage({ src, alt, isGridImage }: GalleryImageProps) {
+export default function GalleryImage({ src, alt, isGridImage, index }: GalleryImageProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
@@ -23,6 +24,7 @@ export default function GalleryImage({ src, alt, isGridImage }: GalleryImageProp
         sizes={isGridImage ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" : "100vw"}
         className={`object-contain ${isGridImage ? "object-cover" : ""}`}
         onLoad={() => setIsLoading(false)}
+        priority={isGridImage && index === 0}
       />
     </>
   );

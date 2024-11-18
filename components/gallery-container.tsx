@@ -1,10 +1,13 @@
 "use client";
 
 import { GalleryImage as GalleryImageTypes } from "@prisma/client";
-import { useState } from "react";
+import { useRef, useState } from "react";
+
 import Lightbox from "yet-another-react-lightbox";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+
 import { Button } from "@/components/ui/button";
 import GalleryImage from "./gallery-image";
 
@@ -27,7 +30,7 @@ export default function GalleryContainer({ galleryImages, currentPage, totalPage
   return (
     <div className="flex flex-col items-center">
       {/* Image Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-10 max-w-[1128px] w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-10 p-5 max-w-[1128px] w-full">
         {galleryImages.map((image, index) => (
           <div
             key={index}
@@ -37,7 +40,7 @@ export default function GalleryContainer({ galleryImages, currentPage, totalPage
               setLightboxIndex(index);
             }}
           >
-            <GalleryImage src={image.url} alt={image.fileName || `Image ${index + 1}`} isGridImage={true} />
+            <GalleryImage src={image.url} alt={image.fileName || `Image ${index + 1}`} isGridImage={true} index={index} />
           </div>
         ))}
       </div>
@@ -59,8 +62,8 @@ export default function GalleryContainer({ galleryImages, currentPage, totalPage
       <Lightbox
         open={open}
         close={() => setOpen(false)}
+        plugins={[Thumbnails]}
         slides={galleryImages.map((image) => ({ src: image.url, alt: image.fileName }))}
-        plugins={[Zoom]}
         index={lightboxIndex}
         render={{
           slide: ({ slide }) => (
