@@ -9,10 +9,18 @@ type GalleryImageProps = {
   alt: string;
   isGridImage: boolean;
   index?: number;
+  onLoad?: () => void;
 };
 
-export default function GalleryImage({ src, alt, isGridImage, index }: GalleryImageProps) {
+export default function GalleryImage({ src, alt, isGridImage, index, onLoad }: GalleryImageProps) {
   const [isLoading, setIsLoading] = useState(true);
+
+  const handleImageLoad = () => {
+    setIsLoading(false);
+    if (onLoad) {
+      onLoad();
+    }
+  };
 
   return (
     <>
@@ -23,7 +31,7 @@ export default function GalleryImage({ src, alt, isGridImage, index }: GalleryIm
         fill
         sizes={isGridImage ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" : "100vw"}
         className={`object-contain ${isGridImage ? "object-cover" : ""}`}
-        onLoad={() => setIsLoading(false)}
+        onLoad={handleImageLoad}
         priority={isGridImage && index === 0}
       />
     </>
