@@ -2,44 +2,28 @@
 
 import Image from "next/image";
 import { Skeleton } from "@/components/ui/skeleton";
-import { isImageSlide, isImageFitCover, SlideImage } from "yet-another-react-lightbox";
+import { useState } from "react";
 
 type GalleryImageProps = {
-  slide: SlideImage;
-  offset: number;
-  rect: {
-    width: number;
-    height: number;
-  };
+  src: string;
+  alt: string;
   isGridImage: boolean;
 };
 
-export default function GalleryImage({ slide, offset, rect, isGridImage }: GalleryImageProps) {
-  if (!isImageSlide(slide) || !slide.width || !slide.height) {
-    return null;
-  }
-
-  const cover = isImageFitCover(slide, "contain");
-
-  const width = !cover ? Math.round(Math.min(rect.width, (rect.height / slide.height) * slide.width)) : rect.width;
-
-  const height = !cover ? Math.round(Math.min(rect.height, (rect.width / slide.width) * slide.height)) : rect.height;
+export default function GalleryImage({ src, alt, isGridImage }: GalleryImageProps) {
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div style={{ position: "relative", width, height }}>
-      {isGridImage && <Skeleton className="absolute inset-0" />}
+    <>
+      {isLoading && isGridImage && <Skeleton className="absolute inset-0 z-10" />}
       <Image
-        src={slide.src}
-        alt={slide.alt || ""}
+        src={src}
+        alt={alt}
         fill
-        draggable={false}
-        loading="lazy"
-        style={{
-          objectFit: cover ? "cover" : "contain",
-          cursor: offset === 0 ? "pointer" : undefined,
-        }}
-        sizes={`${Math.ceil((width / window.innerWidth) * 100)}vw`}
+        sizes={isGridImage ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" : "100vw"}
+        className={`object-contain ${isGridImage ? "object-cover" : ""}`}
+        onLoad={() => setIsLoading(false)}
       />
-    </div>
+    </>
   );
 }
