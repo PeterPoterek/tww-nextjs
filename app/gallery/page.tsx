@@ -1,8 +1,9 @@
 import GalleryContainer from "@/components/gallery-container";
 import prisma from "@/lib/db";
 
-const page = async ({ searchParams }: { searchParams: { page?: string } }) => {
-  const currentPage = parseInt((await searchParams.page) || "1", 10);
+const page = async ({ searchParams }: { searchParams: Promise<{ page?: string }> }) => {
+  const { page = "1" } = await searchParams;
+  const currentPage = parseInt(page, 10);
   const pageSize = 9;
 
   const totalImages = await prisma.galleryImage.count();
