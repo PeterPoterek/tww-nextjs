@@ -1,5 +1,7 @@
 import GalleryContainer from "@/components/gallery-container";
 import prisma from "@/lib/db";
+import { Suspense } from "react";
+import Loading from "../loading";
 
 const GalleryPage = async () => {
   const galleryData = await prisma.galleryImage.findMany({
@@ -10,7 +12,9 @@ const GalleryPage = async () => {
 
   return (
     <div>
-      <GalleryContainer initialGalleryImages={galleryData} />
+      <Suspense fallback={<Loading />}>
+        <GalleryContainer initialGalleryImages={galleryData} />
+      </Suspense>
     </div>
   );
 };

@@ -9,8 +9,6 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 import { Button } from "@/components/ui/button";
 import GalleryImage from "./gallery-image";
 import useGalleryStore from "@/app/store/galleryStore";
-import { LoaderCircle } from "lucide-react";
-import Spinner from "./spinner";
 
 type GalleryContainerProps = {
   initialGalleryImages: GalleryImageType[];
@@ -19,7 +17,6 @@ type GalleryContainerProps = {
 export default function GalleryContainer({ initialGalleryImages }: GalleryContainerProps) {
   const [open, setOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
   const { setAllImages, setCurrentPage, getCurrentPageImages, getTotalPages, currentPage } = useGalleryStore();
 
   useEffect(() => {
@@ -31,24 +28,14 @@ export default function GalleryContainer({ initialGalleryImages }: GalleryContai
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
-      setLoading(true);
       setCurrentPage(newPage);
     }
-  };
-
-  const handleImageLoad = () => {
-    setLoading(false);
   };
 
   return (
     <div className="flex flex-col items-center mt-10 p-5">
       {/* Image Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10 max-w-[1128px] w-full relative lg:min-h-[1128px]">
-        {loading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-background/80 z-10">
-            <Spinner size={30} />
-          </div>
-        )}
         {currentImages.map((image, index) => (
           <div
             key={image.id}
@@ -58,7 +45,7 @@ export default function GalleryContainer({ initialGalleryImages }: GalleryContai
               setLightboxIndex(index);
             }}
           >
-            <GalleryImage src={image.url} alt={image.fileName || `Image ${index + 1}`} isGridImage={true} index={index} onLoad={handleImageLoad} />
+            <GalleryImage src={image.url} alt={image.fileName || `Image ${index + 1}`} isGridImage={true} index={index} />
           </div>
         ))}
       </div>
