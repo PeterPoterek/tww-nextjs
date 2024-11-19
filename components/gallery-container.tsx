@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import GalleryImage from "./gallery-image";
 import useGalleryStore from "@/app/store/galleryStore";
 import { LoaderCircle } from "lucide-react";
+import Spinner from "./spinner";
 
 type GalleryContainerProps = {
   initialGalleryImages: GalleryImageType[];
@@ -45,7 +46,7 @@ export default function GalleryContainer({ initialGalleryImages }: GalleryContai
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10 max-w-[1128px] w-full relative lg:min-h-[1128px]">
         {loading && (
           <div className="absolute inset-0 flex items-center justify-center bg-background/80 z-10">
-            <LoaderCircle size={125} className="animate-spin text-sky-800" />
+            <Spinner size={30} />
           </div>
         )}
         {currentImages.map((image, index) => (
