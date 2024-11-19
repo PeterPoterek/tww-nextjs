@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useState } from "react";
 
 type GalleryImageProps = {
   src: string;

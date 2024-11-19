@@ -4,7 +4,7 @@ import "./globals.css";
 
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
-import Navbar from "@/components/navbar";
+import Navbar from "../components/navbar/navbar";
 
 const roboto = Roboto({
   subsets: ["latin"],
