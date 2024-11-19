@@ -1,12 +1,16 @@
-import { auth } from "./auth";
+import HeroSection from "@/components/hero-section/hero-section";
 
 export default async function Home() {
-  const session = await auth();
-  console.log(session);
-
   return (
     <>
-      <h1>Home Page</h1>
+      <HeroSection />
+
+      <div className="mt-[500px]">
+        <span className="">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem molestiae cumque aliquam necessitatibus. Eligendi quibusdam iusto quos, nostrum
+          temporibus tempore, ipsam non, repellat ab tenetur consequuntur nemo maiores quo magnam?
+        </span>
+      </div>
     </>
   );
 }
