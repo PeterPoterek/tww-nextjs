@@ -1,6 +1,7 @@
 import Image from "next/image";
 import tww from "../../public/tww-hero.svg";
 import Link from "next/link";
+import HeroButton from "./hero-button";
 
 const HeroSection = () => {
   return (
@@ -16,9 +17,9 @@ const HeroSection = () => {
             nich i skorzystaj z naszych usług już dziś!
           </p>
           <div className="flex justify-end">
-            <button className="max-w-[214px] text-secondary font-bold uppercase bg-primary pt-3.5 pb-3.5 pl-14 pr-14">
+            <HeroButton>
               <Link href="/gallery">Realizacje</Link>
-            </button>
+            </HeroButton>
           </div>
         </div>
       </div>
