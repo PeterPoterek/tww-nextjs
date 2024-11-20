@@ -4,7 +4,7 @@ import NavbarLink from "./navbar-link";
 
 const Navbar = async () => {
   return (
-    <nav className="fixed top-0 left-0 right-0 flex gap-5 justify-center items-center p-4 bg-stone-900 border-sky-800 border-b-4 z-50">
+    <nav className="w-[100vw] fixed top-0 left-0 right-0 flex gap-5 justify-center items-center p-4 bg-stone-900 border-sky-800 border-b-4 z-50">
       <div>
         <Link href="/">
           <NavbarLogo />
