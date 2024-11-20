@@ -18,9 +18,9 @@ const HeroSection = () => {
             nich i skorzystaj z naszych usług już dziś!
           </p>
           <div className="flex justify-end">
-            <HeroButton>
-              <Link href="/gallery">Realizacje</Link>
-            </HeroButton>
+            <Link href="/gallery">
+              <HeroButton>Realizacje</HeroButton>
+            </Link>
           </div>
         </div>
       </div>

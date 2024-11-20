@@ -11,7 +11,7 @@ const GalleryPage = async () => {
   });
 
   return (
-    <div>
+    <div className="mt-20">
       <Suspense fallback={<Loading />}>
         <GalleryContainer initialGalleryImages={galleryData} />
       </Suspense>
