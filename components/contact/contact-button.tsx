@@ -1,16 +1,10 @@
 "use client";
-
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
 
-interface HeroButtonProps {
-  children: ReactNode;
-}
-
-const HeroButton = ({ children }: HeroButtonProps) => {
+const ContactButton = () => {
   return (
     <motion.button
-      className="max-w-[214px] text-secondary font-bold uppercase bg-primary py-3.5 px-14"
+      className="max-w-[214px] self-center text-secondary text-xl font-bold uppercase bg-primary py-3.5 px-5"
       whileHover={{
         outline: "3px solid #075985",
         color: "#075985",
@@ -20,9 +14,11 @@ const HeroButton = ({ children }: HeroButtonProps) => {
         ease: "easeInOut",
       }}
     >
-      {children}
+      <a className={"uppercase"} href="">
+        Napisz e-mail
+      </a>
     </motion.button>
   );
 };
 
-export default HeroButton;
+export default ContactButton;

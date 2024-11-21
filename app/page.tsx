@@ -3,6 +3,7 @@ import HeroSection from "@/components/hero/hero-section";
 import StatsSection from "@/components/stats/stats-section";
 import CreationSection from "@/components/creation/creation-section";
 import BannerContainer from "@/components/banner/banner-container";
+import ContactSection from "@/components/contact/contact-section";
 
 export default async function Home() {
   return (
@@ -16,6 +17,8 @@ export default async function Home() {
       <CreationSection />
 
       <BannerContainer />
+
+      <ContactSection />
     </main>
   );
 }
