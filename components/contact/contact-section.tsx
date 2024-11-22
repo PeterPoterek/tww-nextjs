@@ -4,7 +4,10 @@ import ContactButton from "@/components/contact/contact-button";
 
 const ContactSection = () => {
   return (
-    <section className="flex flex-col max-w-[927px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+    <section
+      id={"contact"}
+      className="flex flex-col max-w-[927px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
+    >
       <div className="flex flex-col">
         <SectionHeader text="Kontakt" />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 mt-8 sm:mt-12 lg:mt-16 pb-8 sm:pb-12">

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import {
   GoogleMap,
-  LoadScript,
+  LoadScriptNext,
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
@@ -27,8 +27,8 @@ const Map = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <LoadScript googleMapsApiKey={apiKey}>
-      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={15}>
+    <LoadScriptNext googleMapsApiKey={apiKey}>
+      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12}>
         <Marker position={center} onClick={() => setIsOpen(true)} />
         {isOpen && (
           <InfoWindow position={center} onCloseClick={() => setIsOpen(false)}>
@@ -40,7 +40,7 @@ const Map = () => {
           </InfoWindow>
         )}
       </GoogleMap>
-    </LoadScript>
+    </LoadScriptNext>
   );
 };
 
