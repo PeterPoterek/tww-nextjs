@@ -5,9 +5,9 @@ interface ContactItemProps {
 
 const ContactItem = ({ label, value }: ContactItemProps) => {
   return (
-    <div className="flex gap-8 font-black text-2xl uppercase">
-      <span>{label}</span>
-      <span>{value}</span>
+    <div className="flex flex-col sm:flex-row sm:items-center sm:gap-4 font-black text-lg sm:text-xl lg:text-2xl uppercase">
+      <span className="mb-1 sm:mb-0">{label}:</span>
+      <span className="font-normal break-all">{value}</span>
     </div>
   );
 };
