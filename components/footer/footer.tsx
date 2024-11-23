@@ -49,9 +49,11 @@ const Footer = () => {
         {footerData.map((item, index) => (
           <FooterItem key={index} label={item.label} data={item.data} />
         ))}
+        <div className={"flex flex-col items-end gap-6 text-4xl font-black"}>
+          <h4>Kontakt w dni robocze</h4>
+          <span>9-19</span>
+        </div>
       </div>
-
-      <div></div>
     </footer>
   );
 };
