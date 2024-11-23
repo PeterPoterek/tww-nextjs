@@ -12,7 +12,7 @@ export const ourFileRouter = {
   // Define as many FileRoutes as you like, each with a unique routeSlug
   imageUploader: f({ image: { maxFileSize: "4MB", maxFileCount: 10 } })
     // Set permissions and file types for this FileRoute
-    .middleware(async ({ req }) => {
+    .middleware(async ({}) => {
       // This code runs on your server before upload
       const session = await auth();
 
@@ -38,7 +38,10 @@ export const ourFileRouter = {
           },
         });
 
-        console.log("Image record successfully created in the database", newImage);
+        console.log(
+          "Image record successfully created in the database",
+          newImage,
+        );
       } catch (error) {
         console.error("Error saving image record to the database:", error);
       }
