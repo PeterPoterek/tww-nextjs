@@ -4,7 +4,9 @@ import "./globals.css";
 
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
+
 import Navbar from "../components/navbar/navbar";
+import Footer from "@/components/footer/footer";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -25,9 +27,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${roboto.variable} roboto text-slate-50`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
           <Navbar />
           {children}
+
+          <Footer />
           <Toaster />
         </ThemeProvider>
       </body>
