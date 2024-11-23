@@ -25,7 +25,6 @@ import {
 } from "@/components/ui/alert-dialog";
 
 import Image from "next/image";
-import { useState } from "react";
 import { deleteGalleryImage } from "@/app/actions";
 
 export type GalleryImage = {
@@ -40,7 +39,6 @@ export const columns: ColumnDef<GalleryImage>[] = [
     accessorKey: "url",
     header: "Zdjęcie",
     cell: ({ row, table }) => {
-      const [isLoading, setIsLoading] = useState(true);
       const url = row.getValue("url") as string;
       const fileName = row.getValue("fileName") as string;
 
@@ -48,14 +46,12 @@ export const columns: ColumnDef<GalleryImage>[] = [
 
       return (
         <div className="w-20 h-20 relative">
-          {isLoading && <Skeleton className="w-full h-full rounded-md" />}
           <Image
             src={url}
             alt={fileName}
             fill
             style={{ objectFit: "cover" }}
-            className={`rounded-md transition-opacity duration-300 ${isLoading ? "opacity-0" : "opacity-100"}`}
-            onLoad={() => setIsLoading(false)}
+            className={`rounded-md transition-opacity duration-300 `}
             priority={isFirstPage}
             sizes="80px"
           />
@@ -68,7 +64,10 @@ export const columns: ColumnDef<GalleryImage>[] = [
     accessorKey: "fileName",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
           Nazwa
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
@@ -80,7 +79,10 @@ export const columns: ColumnDef<GalleryImage>[] = [
     accessorKey: "createdAt",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
           Data
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
@@ -123,7 +125,10 @@ export const columns: ColumnDef<GalleryImage>[] = [
               <AlertDialogContent>
                 <AlertDialogHeader>
                   <AlertDialogTitle>Potwierdź usunięcie</AlertDialogTitle>
-                  <AlertDialogDescription>Czy na pewno chcesz usunąć ten obraz? Tej operacji nie można cofnąć.</AlertDialogDescription>
+                  <AlertDialogDescription>
+                    Czy na pewno chcesz usunąć ten obraz? Tej operacji nie można
+                    cofnąć.
+                  </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                   <AlertDialogCancel>Anuluj</AlertDialogCancel>
