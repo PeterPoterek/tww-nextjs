@@ -3,7 +3,6 @@
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -12,13 +11,15 @@ import {
 import { FC } from "react";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { Button } from "./ui/button";
 interface PaginationControlsProps {
   hasNextPage: boolean;
   hasPrevPage: boolean;
 }
 
-const PaginationControler: FC<PaginationControlsProps> = ({ hasNextPage, hasPrevPage }) => {
+const PaginationControler: FC<PaginationControlsProps> = ({
+  hasNextPage,
+  hasPrevPage,
+}) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -33,7 +34,9 @@ const PaginationControler: FC<PaginationControlsProps> = ({ hasNextPage, hasPrev
             <PaginationPrevious
               href="#"
               onClick={() => {
-                router.push(`dashboard/?page=${Number(page) - 1}&per_page=${per_page}`);
+                router.push(
+                  `dashboard/?page=${Number(page) - 1}&per_page=${per_page}`,
+                );
               }}
             />
           </button>
@@ -47,7 +50,9 @@ const PaginationControler: FC<PaginationControlsProps> = ({ hasNextPage, hasPrev
             <PaginationNext
               href="#"
               onClick={() => {
-                router.push(`dashboard/?page=${Number(page) + 1}&per_page=${per_page}`);
+                router.push(
+                  `dashboard/?page=${Number(page) + 1}&per_page=${per_page}`,
+                );
               }}
             />
           </button>
