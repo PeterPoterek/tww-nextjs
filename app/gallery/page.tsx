@@ -1,3 +1,5 @@
+export const revalidate = 60;
+
 import GalleryContainer from "@/components/gallery/gallery-container";
 import prisma from "@/lib/db";
 import { Suspense } from "react";
