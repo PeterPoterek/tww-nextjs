@@ -44,7 +44,7 @@ const ReviewsSection = () => {
   ];
 
   return (
-    <section className="pt-[8rem] max-w-[927px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <section className="pt-[8rem] max-w-[927px] mx-auto px-4 sm:px-6 lg:px-8 pb-[7.5rem]">
       <SectionHeader text="Referencje" />
 
       {mounted && (
