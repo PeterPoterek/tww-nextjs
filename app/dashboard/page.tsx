@@ -1,6 +1,5 @@
 import { auth } from "../auth";
 import { redirect } from "next/navigation";
-import prisma from "@/lib/db";
 import { format } from "date-fns";
 import UserCard from "@/components/user-card";
 import { DataTable } from "@/components/data-table";
@@ -18,7 +17,10 @@ const Page = async () => {
   const formattedGallery = gallery.map((image) => ({
     ...image,
     createdAt: format(image.createdAt, "dd.MM.yy HH:mm"),
-    fileName: image.fileName.length > 20 ? `${image.fileName.slice(0, 20)}...` : image.fileName,
+    fileName:
+      image.fileName.length > 20
+        ? `${image.fileName.slice(0, 20)}...`
+        : image.fileName,
   }));
 
   return (
