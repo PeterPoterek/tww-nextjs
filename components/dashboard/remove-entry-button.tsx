@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -22,7 +22,11 @@ interface RemoveEntryButtonProps {
   removeEntry: (id: string) => Promise<void>;
 }
 
-const RemoveEntryButton: FC<RemoveEntryButtonProps> = ({ id, fileName, removeEntry }) => {
+const RemoveEntryButton: FC<RemoveEntryButtonProps> = ({
+  id,
+  fileName,
+  removeEntry,
+}) => {
   const handleRemove = async () => {
     await removeEntry(id);
   };
@@ -38,12 +42,15 @@ const RemoveEntryButton: FC<RemoveEntryButtonProps> = ({ id, fileName, removeEnt
         <AlertDialogHeader>
           <AlertDialogTitle>Jesteś Pewien?</AlertDialogTitle>
           <AlertDialogDescription>
-            Czy napewno chcesz usunąć <span className="font-bold">{fileName}</span>
+            Czy napewno chcesz usunąć{" "}
+            <span className="font-bold">{fileName}</span>
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Anuluj</AlertDialogCancel>
-          <AlertDialogAction onClick={handleRemove}>Potwierdź</AlertDialogAction>
+          <AlertDialogAction onClick={handleRemove}>
+            Potwierdź
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

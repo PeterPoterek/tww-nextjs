@@ -1,12 +1,19 @@
 import { FC } from "react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { User } from "lucide-react";
 
-import Upload from "@/components/upload";
-import SignOut from "@/components/sign-out";
+import Upload from "@/components/dashboard/upload";
+import SignOut from "@/components/dashboard/sign-out";
 
 interface UserCardProps {
   username: string;
@@ -38,7 +45,9 @@ const UserCard: FC<UserCardProps> = ({ username, avatarUrl }) => {
         </div>
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium">Ostatnie logowanie:</span>
-          <span className="text-sm text-muted-foreground">{new Date().toLocaleDateString()}</span>
+          <span className="text-sm text-muted-foreground">
+            {new Date().toLocaleDateString()}
+          </span>
         </div>
       </CardContent>
       <CardFooter className="flex flex-col sm:flex-row gap-4 pt-6">

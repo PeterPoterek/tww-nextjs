@@ -1,5 +1,5 @@
 import { LogIn, Loader2 } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 interface SignInButtonProps {
   loading: boolean;
@@ -7,7 +7,12 @@ interface SignInButtonProps {
 
 const SignInButton = ({ loading }: SignInButtonProps) => {
   return (
-    <Button variant={"outline"} type="submit" className="w-64 self-center" disabled={loading}>
+    <Button
+      variant={"outline"}
+      type="submit"
+      className="w-64 self-center"
+      disabled={loading}
+    >
       {loading ? (
         <div className="flex justify-center items-center gap-2">
           <span>Logowanie...</span>

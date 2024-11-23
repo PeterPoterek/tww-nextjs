@@ -1,4 +1,4 @@
-import GalleryContainer from "@/components/gallery-container";
+import GalleryContainer from "@/components/gallery/gallery-container";
 import prisma from "@/lib/db";
 import { Suspense } from "react";
 import Loading from "../loading";

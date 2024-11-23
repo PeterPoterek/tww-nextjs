@@ -11,12 +11,14 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { LogOut } from "lucide-react";
 
 const SignOutButton = () => {
   const handleSignOut = () => {
-    (document.getElementById("signOutForm") as HTMLFormElement)?.requestSubmit();
+    (
+      document.getElementById("signOutForm") as HTMLFormElement
+    )?.requestSubmit();
   };
 
   return (
@@ -30,11 +32,16 @@ const SignOutButton = () => {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Czy jesteś pewien?</AlertDialogTitle>
-          <AlertDialogDescription>Ta operacja spowoduje wylogowanie z konta. Czy na pewno chcesz kontynuować?</AlertDialogDescription>
+          <AlertDialogDescription>
+            Ta operacja spowoduje wylogowanie z konta. Czy na pewno chcesz
+            kontynuować?
+          </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Anuluj</AlertDialogCancel>
-          <AlertDialogAction onClick={handleSignOut}>Kontynuuj</AlertDialogAction>
+          <AlertDialogAction onClick={handleSignOut}>
+            Kontynuuj
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

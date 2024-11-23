@@ -1,9 +1,9 @@
 import { auth } from "../auth";
 import { redirect } from "next/navigation";
 import { format } from "date-fns";
-import UserCard from "@/components/user-card";
-import { DataTable } from "@/components/data-table";
-import { columns } from "@/components/columns";
+import UserCard from "@/components/dashboard/user-card";
+import { DataTable } from "@/components/dashboard/data-table";
+import { columns } from "@/components/dashboard/columns";
 
 import { getGalleryImages } from "../actions";
 

@@ -4,9 +4,16 @@ import { signIn } from "next-auth/react";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import SignInButton from "./sign-in-button";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 
@@ -38,7 +45,8 @@ export default function SignIn() {
       console.error("Błąd logowania:", err);
       toast({
         title: "Wystąpił błąd",
-        description: "Nie udało się zalogować. Proszę spróbować ponownie później.",
+        description:
+          "Nie udało się zalogować. Proszę spróbować ponownie później.",
         variant: "destructive",
       });
     } finally {
@@ -51,7 +59,9 @@ export default function SignIn() {
       <Card className="w-full max-w-md mx-auto shadow-lg rounded-xl">
         <CardHeader>
           <CardTitle className="text-3xl font-semibold">Logowanie</CardTitle>
-          <CardDescription className="text-sm">Wprowadź swoje dane, aby uzyskać dostęp do swojego konta</CardDescription>
+          <CardDescription className="text-sm">
+            Wprowadź swoje dane, aby uzyskać dostęp do swojego konta
+          </CardDescription>
         </CardHeader>
         <form
           onSubmit={(e) => {
@@ -68,14 +78,23 @@ export default function SignIn() {
             <div className="space-y-2">
               <Label htmlFor="password">Hasło</Label>
               <div className="relative">
-                <Input id="password" name="password" type={showPassword ? "text" : "password"} required />
+                <Input
+                  id="password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  required
+                />
                 <button
                   type="button"
                   className="absolute right-3 top-1/2 transform -translate-y-1/2"
                   onClick={() => setShowPassword(!showPassword)}
                   aria-label={showPassword ? "Ukryj hasło" : "Pokaż hasło"}
                 >
-                  {showPassword ? <EyeOffIcon className="h-4 w-4" /> : <EyeIcon className="h-4 w-4" />}
+                  {showPassword ? (
+                    <EyeOffIcon className="h-4 w-4" />
+                  ) : (
+                    <EyeIcon className="h-4 w-4" />
+                  )}
                 </button>
               </div>
             </div>
