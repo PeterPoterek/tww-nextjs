@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import SectionHeader from "@/components/section-header";
 import ReviewsSlide from "@/components/reviews/reviews-slide";
+import { motion, useInView } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
@@ -11,6 +12,11 @@ import "swiper/css/pagination";
 
 const ReviewsSection = () => {
   const [mounted, setMounted] = useState(false);
+  const headerRef = useRef(null);
+  const isHeaderInView = useInView(headerRef, {
+    once: true,
+    margin: "0px 0px -100px 0px",
+  });
 
   useEffect(() => {
     setMounted(true);
@@ -45,7 +51,14 @@ const ReviewsSection = () => {
 
   return (
     <section className="pt-[8rem] max-w-[927px] mx-auto px-4 sm:px-6 lg:px-8 pb-[7.5rem]">
-      <SectionHeader text="Referencje" />
+      <motion.div
+        ref={headerRef}
+        initial={{ opacity: 0, x: -50 }}
+        animate={isHeaderInView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <SectionHeader text="Referencje" />
+      </motion.div>
 
       {mounted && (
         <Swiper

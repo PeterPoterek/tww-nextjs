@@ -1,15 +1,26 @@
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+
 interface ReviewSlideProps {
   name: string;
   description: string;
 }
 
 const ReviewsSlide = ({ name, description }: ReviewSlideProps) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px 0px" });
+
   return (
-    <div
+    <motion.div
+      ref={ref}
       className={
-        "relative flex flex-col justify-center items-center py-[3.5rem] mt-20 bg-slate-50 text-secondary border-l-[16px] border-sky-800 " +
-        "min-h-[364px]"
+        "relative flex flex-col justify-center items-center py-[3.5rem] mt-20 bg-slate-50 text-secondary border-l-[16px] border-sky-800 min-h-[364px]"
       }
+      initial={{ opacity: 0, x: -50 }}
+      animate={isInView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <p
         className={
@@ -25,7 +36,7 @@ const ReviewsSlide = ({ name, description }: ReviewSlideProps) => {
       >
         {name}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
