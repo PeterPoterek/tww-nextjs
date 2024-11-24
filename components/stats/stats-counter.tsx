@@ -2,7 +2,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 
-const StatsCounter = ({ value }: { value: number }) => {
+interface StatsCounterProps {
+  value: number;
+  projects?: boolean;
+}
+
+const StatsCounter = ({ value, projects = false }: StatsCounterProps) => {
   const [currentValue, setCurrentValue] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true });
@@ -30,6 +35,7 @@ const StatsCounter = ({ value }: { value: number }) => {
   return (
     <span ref={ref} className="text-2xl md:text-3xl">
       {currentValue}
+      {projects && "+"}
     </span>
   );
 };
