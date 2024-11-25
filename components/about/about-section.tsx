@@ -10,11 +10,11 @@ const AboutSection = () => {
 
   return (
     <section
-      className="flex max-w-[927px] m-0 mx-auto pt-20 pb-[8.5rem] scroll-mt-28"
+      className="flex max-w-[927px] m-0 mx-auto pt-20 pb-[8.5rem] scroll-mt-28 px-4 sm:px-6 md:px-8"
       ref={ref}
     >
       <motion.div
-        className="flex flex-col justify-center"
+        className="flex flex-col justify-center w-full"
         initial={{ opacity: 0, x: -50 }}
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -23,11 +23,12 @@ const AboutSection = () => {
           initial={{ opacity: 0, x: -50 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          className="text-center sm:text-left"
         >
           <SectionHeader text={"O Firmie"} />
         </motion.div>
         <motion.p
-          className="text-2xl font-light mt-6"
+          className="text-lg sm:text-2xl font-light mt-6 text-center sm:text-left"
           initial={{ opacity: 0, x: -50 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}

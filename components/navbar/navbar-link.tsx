@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface NavbarLinkProps {
   path: string;
@@ -10,28 +10,28 @@ interface NavbarLinkProps {
   onClick?: () => void;
 }
 
-const NavbarLink = ({
-  path,
-  text,
-  scroll = true,
-  onClick,
-}: NavbarLinkProps) => {
-  const handleClick = () => {
+const NavbarLink = ({ path, text, onClick }: NavbarLinkProps) => {
+  const router = useRouter();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
     if (onClick) {
       onClick();
     }
+    router.push(path);
+    window.scrollTo(0, 0);
   };
 
   return (
     <li className="cursor-pointer text-primary">
-      <Link href={path} scroll={scroll} onClick={handleClick}>
+      <a href={path} onClick={handleClick}>
         <motion.div
           whileHover={{ color: "#0288d1" }}
           transition={{ duration: 0.3 }}
         >
           {text}
         </motion.div>
-      </Link>
+      </a>
     </li>
   );
 };

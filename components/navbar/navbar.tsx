@@ -35,9 +35,9 @@ const Navbar = () => {
 
         <menu className="hidden lg:flex gap-6 text-base font-semibold uppercase">
           <NavbarLink path="/" text="Strona Głowna" />
-          <NavbarLink path="/gallery" text="Realizacje" scroll={false} />
+          <NavbarLink path="/gallery" text="Realizacje" />
           <NavbarLink path="/#contact" text="Kontakt" />
-          <NavbarLink path="certificates" text="Certyfikaty" />
+          <NavbarLink path="/certificates" text="Certyfikaty" />
         </menu>
 
         <div className="hidden lg:block">
@@ -81,7 +81,6 @@ const Navbar = () => {
                 <NavbarLink
                   path="/gallery"
                   text="Realizacje"
-                  scroll={false}
                   onClick={toggleMenu}
                 />
                 <NavbarLink
@@ -90,7 +89,7 @@ const Navbar = () => {
                   onClick={toggleMenu}
                 />
                 <NavbarLink
-                  path="certificates"
+                  path="/certificates"
                   text="Certyfikaty"
                   onClick={toggleMenu}
                 />
