@@ -24,11 +24,6 @@ const ReviewsSection = () => {
 
   const reviews = [
     {
-      name: "Michał M",
-      description:
-        "Dokładni, terminowi, doświadczeni i profesjonalni. Lepszej ekipy ze świecą szukać :) jesteśmy stałymi klientami, Piotrek i Paweł zrobili dla nas remont 2 łazienek, przedpokoju, wydzielili pralnie z części salonu, wykonali ścianę z cegieł i wyremontowali drugie mieszkanie dla mojej mamy. Dla nich nie ma rzeczy niemożliwych - zrobią wszystko. Nie było potrzeby żadnych poprawek i zawsze byliśmy mega zadowoleni. Z czystym sumieniem polecamy!!!",
-    },
-    {
       name: "Beata B",
       description:
         "Super fachowcy, punktualni, odpowiedzialni, rzeczowi i bardzo profesjonalni. Wykonawcy bardzo dokładni, rzetelni i solidni. Panowie Piotr i Paweł to zgrany zespół. Terminowo i kompleksowo wykończyli mieszkanie. Są bezkonfliktowi, służą doświadczeniem i doradztwem. Dla mnie super! Polecam na 120%.",

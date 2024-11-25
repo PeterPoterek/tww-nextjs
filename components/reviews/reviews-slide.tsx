@@ -16,7 +16,7 @@ const ReviewsSlide = ({ name, description }: ReviewSlideProps) => {
     <motion.div
       ref={ref}
       className={
-        "relative flex flex-col justify-center items-center py-[3.5rem] mt-20 bg-slate-50 text-secondary border-l-[16px] border-sky-800 min-h-[364px]"
+        "relative flex flex-col justify-center items-center py-[3.5rem] mt-20 bg-slate-50 text-secondary border-l-[16px] border-sky-800 min-h-[488px] sm:min-h-[364px]"
       }
       initial={{ opacity: 0, x: -50 }}
       animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -31,7 +31,7 @@ const ReviewsSlide = ({ name, description }: ReviewSlideProps) => {
       </p>
       <div
         className={
-          "absolute bottom-4 right-20 text-xl font-bold text-secondary"
+          "absolute bottom-8 left-1/2 transform -translate-x-1/2 text-xl font-bold text-secondary sm:bottom-4 sm:right-20 sm:left-auto sm:transform-none sm:text-start"
         }
       >
         {name}
