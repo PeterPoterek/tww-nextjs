@@ -95,11 +95,13 @@ const Navbar = () => {
                   onClick={toggleMenu}
                 />
               </menu>
-              <div className="mt-8">
-                <span className="text-2xl font-bold text-primary">
-                  696-075-595
-                </span>
-              </div>
+              {!isOpen && (
+                <div className="mt-8">
+                  <span className="text-2xl font-bold text-primary">
+                    696-075-595
+                  </span>
+                </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
