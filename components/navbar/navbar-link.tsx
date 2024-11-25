@@ -7,12 +7,24 @@ interface NavbarLinkProps {
   path: string;
   text: string;
   scroll?: boolean;
+  onClick?: () => void;
 }
 
-const NavbarLink = ({ path, text, scroll = true }: NavbarLinkProps) => {
+const NavbarLink = ({
+  path,
+  text,
+  scroll = true,
+  onClick,
+}: NavbarLinkProps) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (onClick) {
+      onClick();
+    }
+  };
+
   return (
     <li className="cursor-pointer text-primary">
-      <Link href={path} scroll={scroll}>
+      <Link href={path} scroll={scroll} onClick={handleClick}>
         <motion.div
           whileHover={{ color: "#0288d1" }}
           transition={{ duration: 0.3 }}
