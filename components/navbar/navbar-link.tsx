@@ -16,7 +16,7 @@ const NavbarLink = ({
   scroll = true,
   onClick,
 }: NavbarLinkProps) => {
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = () => {
     if (onClick) {
       onClick();
     }
