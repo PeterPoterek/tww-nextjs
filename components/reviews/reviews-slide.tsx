@@ -24,7 +24,7 @@ const ReviewsSlide = ({ name, description }: ReviewSlideProps) => {
     >
       <p
         className={
-          "relative max-w-[473px] text-xl text-center font-light before:content-['“'] after:content-['”'] before:text-sky-800 after:text-sky-800 before:text-5xl after:text-5xl before:leading-none after:leading-none before:absolute before:-top-4 before:-left-6 after:absolute after:-bottom-4 after:-right-6"
+          "relative max-w-[473px] text-xl text-center font-light before:content-['“'] after:content-['”'] before:text-sky-800 after:text-sky-800 before:text-4xl after:text-4xl before:leading-none after:leading-none before:absolute before:-top-3 before:left-4 after:absolute after:-bottom-3 after:right-4 sm:before:text-5xl sm:after:text-5xl sm:before:-top-4 sm:before:-left-6 sm:after:-bottom-4 sm:after:-right-6"
         }
       >
         {description}
