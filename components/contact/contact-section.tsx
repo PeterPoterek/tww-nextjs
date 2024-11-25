@@ -14,7 +14,7 @@ const ContactSection = () => {
     <section
       id="contact"
       ref={ref}
-      className="flex flex-col max-w-[927px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
+      className="flex flex-col max-w-[927px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 scroll-mt-28"
     >
       <motion.div
         className="flex flex-col"

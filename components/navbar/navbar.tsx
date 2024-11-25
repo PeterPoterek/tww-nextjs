@@ -13,7 +13,7 @@ const Navbar = async () => {
 
       <menu className="flex gap-6 text-base font-semibold uppercase ml-[54px] mr-[107px]">
         <NavbarLink path="/" text="Strona Głowna" />
-        <NavbarLink path="/gallery" text="Realizacje" />
+        <NavbarLink path="/gallery" text="Realizacje" scroll={false} />
         <NavbarLink path="/#contact" text="Kontakt" />
         <NavbarLink path="certificates" text="Certyfikaty" />
       </menu>

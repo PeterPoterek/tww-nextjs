@@ -30,7 +30,10 @@ const CreationSection = () => {
   };
 
   return (
-    <section ref={ref} className="max-w-[966px] pt-[8.5rem] m-0 mx-auto">
+    <section
+      ref={ref}
+      className="max-w-[966px] pt-[8.5rem] m-0 mx-auto scroll-mt-28"
+    >
       <motion.div
         className="flex flex-col justify-center"
         initial="hidden"

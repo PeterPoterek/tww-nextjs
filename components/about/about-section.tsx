@@ -10,7 +10,7 @@ const AboutSection = () => {
 
   return (
     <section
-      className="flex max-w-[927px] m-0 mx-auto pt-20 pb-[8.5rem]"
+      className="flex max-w-[927px] m-0 mx-auto pt-20 pb-[8.5rem] scroll-mt-28"
       ref={ref}
     >
       <motion.div
@@ -35,11 +35,10 @@ const AboutSection = () => {
           Jesteśmy doświadczoną firmą remontową, oferującą kompleksowe
           wykończenie mieszkań i łazienek. Nasze usługi obejmują biały montaż,
           malowanie, malowanie natryskowe, montaż paneli, drzwi, kominki oraz
-          kamień ozdobny Stegu i Stone. Doradzamy w wyborze materiałów, a nasze
-          doświadczenie w budownictwie sięga 1991 roku. Terminowość i porządek
-          to nasze główne cechy, a po zakończonym remoncie dbamy o czystość.
-          Zapraszamy do kontaktu, chętnie przyjedziemy niezobowiązująco omówić
-          zakres remontu.
+          kamień ozdobny. Doradzamy w wyborze materiałów, a nasze doświadczenie
+          w budownictwie sięga 1991 roku. Terminowość i porządek to nasze główne
+          cechy, a po zakończonym remoncie dbamy o czystość. Zapraszamy do
+          kontaktu, chętnie przyjedziemy niezobowiązująco omówić zakres remontu.
         </motion.p>
       </motion.div>
     </section>
