@@ -1,7 +1,7 @@
 "use client";
 
 import { GalleryImage as GalleryImageType } from "@prisma/client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
@@ -26,6 +26,7 @@ export default function GalleryContainer({
     getTotalPages,
     currentPage,
   } = useGalleryStore();
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setAllImages(initialGalleryImages);
@@ -37,13 +38,16 @@ export default function GalleryContainer({
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setCurrentPage(newPage);
+      if (containerRef.current) {
+        containerRef.current.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
   return (
-    <div className="flex flex-col items-center mt-10 p-5">
+    <div ref={containerRef} className="flex flex-col items-center mt-10 p-5">
       {/* Image Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10 max-w-[1128px] w-full relative lg:min-h-[1128px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10 w-full max-w-[1128px] relative">
         {currentImages.map((image, index) => (
           <div
             key={image.id}
@@ -64,22 +68,27 @@ export default function GalleryContainer({
       </div>
 
       {/* Pagination Controls */}
-      <div className="flex justify-center items-center mt-4 gap-4">
-        <GalleryButton
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          Poprzednia
-        </GalleryButton>
-        <span className="text-lg font-semibold">
+      <div className="flex flex-col sm:flex-row items-center justify-center mt-4 gap-4 w-full max-w-[1128px]">
+        <span className="text-lg font-semibold mb-2 sm:hidden">
           Strona {currentPage} z {totalPages}
         </span>
-        <GalleryButton
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          Następna
-        </GalleryButton>
+        <div className="flex justify-center items-center gap-4 w-full sm:w-auto">
+          <GalleryButton
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Poprzednia
+          </GalleryButton>
+          <span className="text-lg font-semibold hidden sm:inline-block whitespace-nowrap">
+            Strona {currentPage} z {totalPages}
+          </span>
+          <GalleryButton
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Następna
+          </GalleryButton>
+        </div>
       </div>
 
       {/* Lightbox */}

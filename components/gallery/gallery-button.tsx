@@ -17,7 +17,7 @@ const GalleryButton = ({
   return (
     <motion.button
       className={`
-        max-w-[214px] text-secondary font-bold uppercase bg-primary py-3.5 px-14
+        w-[120px] sm:w-full sm:max-w-[214px] text-secondary font-bold uppercase bg-primary py-2 sm:py-3.5 px-2 sm:px-14 text-sm sm:text-base
         ${disabled ? "opacity-50 cursor-default" : "cursor-pointer"}
       `}
       whileHover={

@@ -13,7 +13,7 @@ const GalleryPage = async () => {
   });
 
   return (
-    <div className="mt-20">
+    <div className="mt-20 pb-[6.5rem]">
       <Suspense fallback={<Loading />}>
         <GalleryContainer initialGalleryImages={galleryData} />
       </Suspense>
