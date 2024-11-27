@@ -10,6 +10,7 @@ import {
 const containerStyle = {
   width: "100%",
   height: "416px",
+  borderBottom: "5px solid #075985",
 };
 
 const center = {

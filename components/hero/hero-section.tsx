@@ -9,8 +9,9 @@ import { motion } from "framer-motion";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen">
+      {/* Background Image */}
       <Image
-        src="/hero-background.png"
+        src="/bg-test.jpg"
         alt=""
         fill
         priority
@@ -18,8 +19,11 @@ const HeroSection = () => {
         sizes="100vw"
         quality={85}
       />
-      <div className="absolute inset-0 backdrop-blur-sm" />
 
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/40" />
+
+      {/* Content */}
       <div className="relative flex min-h-screen flex-col items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
         <div className="flex max-w-[1108px] flex-col">
           <motion.div
