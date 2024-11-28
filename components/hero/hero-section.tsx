@@ -11,7 +11,7 @@ const HeroSection = () => {
     <section className="relative min-h-screen">
       {/* Background Image */}
       <Image
-        src="/bg-test.jpg"
+        src="/landing-image.jpg"
         alt=""
         fill
         priority
