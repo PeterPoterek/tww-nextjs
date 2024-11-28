@@ -20,11 +20,11 @@ export default async function Home() {
 
       <BannerContainer />
 
-      <ContactSection />
+      <ReviewsSection />
 
       <Map />
 
-      <ReviewsSection />
+      <ContactSection />
     </main>
   );
 }

@@ -1,31 +1,30 @@
 "use client";
-import { useState } from "react";
+
+import {
+  contactFormSchema,
+  ContactFormData,
+} from "@/schemas/contactFormSchema";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    setFormData({ name: "", email: "", message: "" });
+  const onSubmit = (data: ContactFormData) => {
+    console.log("Form submitted:", data);
+    reset();
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div>
         <label
           htmlFor="name"
@@ -36,13 +35,13 @@ const ContactForm = () => {
         <input
           type="text"
           id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
+          {...register("name")}
           className="mt-1 block w-full rounded-md bg-stone-700 border-gray-600 text-white shadow-sm focus:border-sky-400 focus:ring focus:ring-sky-400 focus:ring-opacity-50 px-4 py-2"
           placeholder="Wpisz swoje imię i nazwisko"
         />
+        {errors.name && (
+          <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
+        )}
       </div>
       <div>
         <label
@@ -54,13 +53,13 @@ const ContactForm = () => {
         <input
           type="email"
           id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
+          {...register("email")}
           className="mt-1 block w-full rounded-md bg-stone-700 border-gray-600 text-white shadow-sm focus:border-sky-400 focus:ring focus:ring-sky-400 focus:ring-opacity-50 px-4 py-2"
           placeholder="Wpisz swój adres email"
         />
+        {errors.email && (
+          <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
+        )}
       </div>
       <div>
         <label
@@ -71,14 +70,14 @@ const ContactForm = () => {
         </label>
         <textarea
           id="message"
-          name="message"
+          {...register("message")}
           rows={4}
-          value={formData.message}
-          onChange={handleChange}
-          required
           className="mt-1 block w-full rounded-md bg-stone-700 border-gray-600 text-white shadow-sm focus:border-sky-400 focus:ring focus:ring-sky-400 focus:ring-opacity-50 px-4 py-2"
           placeholder="Wpisz swoją wiadomość"
         ></textarea>
+        {errors.message && (
+          <p className="mt-1 text-sm text-red-500">{errors.message.message}</p>
+        )}
       </div>
       <div>
         <button
