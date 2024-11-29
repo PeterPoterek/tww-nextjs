@@ -45,7 +45,10 @@ export default function GalleryContainer({
   };
 
   return (
-    <div ref={containerRef} className="flex flex-col items-center mt-10 p-5">
+    <div
+      ref={containerRef}
+      className="flex flex-col items-center pt-[5rem] p-5"
+    >
       {/* Image Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10 w-full max-w-[1128px] relative">
         {currentImages.map((image, index) => (
