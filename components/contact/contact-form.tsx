@@ -7,6 +7,7 @@ import {
 } from "@/schemas/contactFormSchema";
 import emailjs from "emailjs-com";
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const validateEmailJsConfig = () => {
   const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
@@ -24,13 +25,7 @@ const validateEmailJsConfig = () => {
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState<{
-    type: "success" | "error" | null;
-    message: string;
-  }>({
-    type: null,
-    message: "",
-  });
+  const { toast } = useToast();
 
   const {
     register,
@@ -43,7 +38,6 @@ const ContactForm = () => {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-    setStatus({ type: null, message: "" });
 
     try {
       const { serviceId, templateId, userId } = validateEmailJsConfig();
@@ -62,16 +56,18 @@ const ContactForm = () => {
       );
       console.log("Email sent successfully", response);
 
-      setStatus({
-        type: "success",
-        message: "Wiadomość została wysłana!",
+      toast({
+        title: "Sukces!",
+        description: "Wiadomość została wysłana!",
+        variant: "default",
       });
       reset();
     } catch (error) {
       console.error("Error sending email", error);
-      setStatus({
-        type: "error",
-        message: "Wystąpił błąd. Spróbuj ponownie.",
+      toast({
+        title: "Błąd",
+        description: "Wystąpił błąd. Spróbuj ponownie.",
+        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
@@ -79,15 +75,7 @@ const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {status.message && (
-        <div
-          className={`text-sm ${status.type === "success" ? "text-green-500" : "text-red-500"}`}
-        >
-          {status.message}
-        </div>
-      )}
-
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 min-h-[467px]">
       <div>
         <label
           htmlFor="name"
