@@ -15,27 +15,29 @@ const ReviewsSlide = ({ name, description }: ReviewSlideProps) => {
   return (
     <motion.div
       ref={ref}
-      className={
-        "relative flex flex-col justify-center items-center py-[3.5rem] mt-20 bg-slate-50 text-secondary border-l-[16px] border-sky-800 min-h-[488px] sm:min-h-[364px]"
-      }
-      initial={{ opacity: 0, x: -50 }}
-      animate={isInView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="relative flex flex-col justify-between items-center p-8 bg-slate-50 text-secondary border-l-4 border-sky-800 min-h-[300px] shadow-md rounded-r-lg"
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <p
-        className={
-          "relative max-w-[473px] text-xl text-center font-light before:content-['“'] after:content-['”'] before:text-sky-800 after:text-sky-800 before:text-4xl after:text-4xl before:leading-none after:leading-none before:absolute before:-top-3 before:left-4 after:absolute after:-bottom-3 after:right-4 sm:before:text-5xl sm:after:text-5xl sm:before:-top-4 sm:before:-left-6 sm:after:-bottom-4 sm:after:-right-6"
-        }
-      >
-        {description}
-      </p>
-      <div
-        className={
-          "absolute bottom-8 left-1/2 transform -translate-x-1/2 text-xl font-bold text-secondary sm:bottom-4 sm:right-20 sm:left-auto sm:transform-none sm:text-start"
-        }
-      >
-        {name}
+      <div className="flex-grow flex items-center">
+        <p className="relative max-w-2xl text-lg text-center font-light italic">
+          <span
+            className="text-4xl text-sky-800 absolute -top-6 -left-4 font-bold"
+            style={{ fontWeight: 800 }}
+          >
+            &quot;
+          </span>
+          {description}
+          <span
+            className="text-4xl text-sky-800 absolute -bottom-8 -right-4 font-bold"
+            style={{ fontWeight: 800 }}
+          >
+            &quot;
+          </span>
+        </p>
       </div>
+      <div className="mt-6 text-xl font-bold text-sky-800">{name}</div>
     </motion.div>
   );
 };

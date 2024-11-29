@@ -24,11 +24,6 @@ const ReviewsSection = () => {
 
   const reviews = [
     {
-      name: "Beata B",
-      description:
-        "Super fachowcy, punktualni, odpowiedzialni, rzeczowi i bardzo profesjonalni. Wykonawcy bardzo dokładni, rzetelni i solidni. Panowie Piotr i Paweł to zgrany zespół. Terminowo i kompleksowo wykończyli mieszkanie. Są bezkonfliktowi, służą doświadczeniem i doradztwem. Dla mnie super! Polecam na 120%.",
-    },
-    {
       name: "Mariusz S",
       description: "Wykonane prace poprawnie i terminowo. Polecam.",
     },
@@ -45,12 +40,12 @@ const ReviewsSection = () => {
   ];
 
   return (
-    <section className="pt-[8rem] max-w-[927px] mx-auto px-4 sm:px-6 lg:px-8 pb-[7.5rem]">
+    <section className="pt-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
       <motion.div
         ref={headerRef}
-        initial={{ opacity: 0, x: -50 }}
-        animate={isHeaderInView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <SectionHeader text="Referencje" />
       </motion.div>
@@ -68,7 +63,7 @@ const ReviewsSection = () => {
           className="mt-8"
         >
           {reviews.map(({ name, description }, index) => (
-            <SwiperSlide key={index} className="h-[400px]">
+            <SwiperSlide key={index}>
               <ReviewsSlide name={name} description={description} />
             </SwiperSlide>
           ))}

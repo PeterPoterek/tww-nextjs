@@ -6,7 +6,7 @@ import prisma from "@/lib/db";
 const f = createUploadthing();
 
 export const ourFileRouter = {
-  imageUploader: f({ image: { maxFileSize: "4MB", maxFileCount: 10 } })
+  imageUploader: f({ image: { maxFileSize: "2GB", maxFileCount: 10 } })
     .middleware(async ({}) => {
       const session = await auth();
 
