@@ -3,7 +3,6 @@
 import Image from "next/image";
 import tww from "../../public/tww-hero.svg";
 import Link from "next/link";
-import HeroButton from "./hero-button";
 import { motion, useReducedMotion } from "framer-motion";
 import { Suspense, lazy } from "react";
 
