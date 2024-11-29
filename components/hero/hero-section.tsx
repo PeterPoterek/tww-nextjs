@@ -24,8 +24,8 @@ const HeroSection = () => {
         fill
         priority
         className="object-cover"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        quality={100}
+        sizes="100vw"
+        quality={85}
       />
 
       <div className="absolute inset-0 bg-black/40" />

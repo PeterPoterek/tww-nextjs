@@ -6,6 +6,7 @@ import BannerContainer from "@/components/banner/banner-container";
 import ContactSection from "@/components/contact/contact-section";
 import Map from "@/components/map/map";
 import ReviewsSection from "@/components/reviews/reviews-section";
+import ServicesSection from "@/components/services/services-section";
 
 export default async function Home() {
   return (
@@ -17,6 +18,8 @@ export default async function Home() {
       <StatsSection />
 
       <CreationSection />
+
+      <ServicesSection />
 
       <BannerContainer />
 
