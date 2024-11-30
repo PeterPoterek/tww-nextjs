@@ -17,12 +17,12 @@ const ServicesSection = () => {
   const servicesData: Service[] = [
     {
       label: "Remonty mieszkań",
-      icon: <MdHomeRepairService size={40} className="text-stone-800" />,
+      icon: <MdHomeRepairService size={40} className="text-primary" />,
       services: ["Renowacje mieszkań", "Remont łazienki", "Remonty kuchni"],
     },
     {
       label: "Wykończenia wnętrz",
-      icon: <FaPaintRoller size={40} className="text-stone-800" />,
+      icon: <FaPaintRoller size={40} className="text-primary" />,
       services: [
         "Wykończenia łazienek",
         "Tapetowanie",
@@ -32,7 +32,7 @@ const ServicesSection = () => {
     },
     {
       label: "Prace wykończeniowe",
-      icon: <FaTools size={40} className="text-stone-800" />,
+      icon: <FaTools size={40} className="text-primary" />,
       services: [
         "Układanie glazury",
         "Montaż płyt gipsowych",
