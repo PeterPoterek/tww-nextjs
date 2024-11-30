@@ -18,17 +18,13 @@ const ServicesSection = () => {
     {
       label: "Remonty mieszkań",
       icon: <MdHomeRepairService size={40} className="text-stone-800" />,
-      services: [
-        "Renowacje mieszkań",
-        "Remont łazienki",
-        "Remonty kuchni",
-        "Wykończenia łazienek",
-      ],
+      services: ["Renowacje mieszkań", "Remont łazienki", "Remonty kuchni"],
     },
     {
       label: "Wykończenia wnętrz",
       icon: <FaPaintRoller size={40} className="text-stone-800" />,
       services: [
+        "Wykończenia łazienek",
         "Tapetowanie",
         "Malowanie ścian",
         "Układanie paneli podłogowych",

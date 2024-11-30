@@ -57,7 +57,7 @@ const ContactForm = () => {
       console.log("Email sent successfully", response);
 
       toast({
-        title: "Sukces!",
+        title: "Sukces ✅",
         description: "Wiadomość została wysłana!",
         variant: "default",
       });
@@ -125,7 +125,7 @@ const ContactForm = () => {
           id="message"
           {...register("message")}
           rows={4}
-          className="mt-1 block w-full rounded-md bg-stone-700 border-gray-600 text-white shadow-sm focus:border-sky-400 focus:ring focus:ring-sky-400 focus:ring-opacity-50 px-4 py-2"
+          className="mt-1 block w-full rounded-md bg-stone-700 border-gray-600 text-white shadow-sm focus:border-sky-400 focus:ring focus:ring-sky-400 focus:ring-opacity-50 px-4 py-2 resize-none"
           placeholder="Wpisz swoją wiadomość"
         ></textarea>
         {errors.message && (
