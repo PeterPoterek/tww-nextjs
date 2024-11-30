@@ -17,7 +17,7 @@ const ServicesSection = () => {
   const servicesData: Service[] = [
     {
       label: "Remonty mieszkań",
-      icon: <MdHomeRepairService size={32} className="text-sky-800" />,
+      icon: <MdHomeRepairService size={40} className="text-stone-800" />,
       services: [
         "Renowacje mieszkań",
         "Remont łazienki",
@@ -27,7 +27,7 @@ const ServicesSection = () => {
     },
     {
       label: "Wykończenia wnętrz",
-      icon: <FaPaintRoller size={32} className="text-sky-800" />,
+      icon: <FaPaintRoller size={40} className="text-stone-800" />,
       services: [
         "Tapetowanie",
         "Malowanie ścian",
@@ -36,7 +36,7 @@ const ServicesSection = () => {
     },
     {
       label: "Prace wykończeniowe",
-      icon: <FaTools size={32} className="text-sky-800" />,
+      icon: <FaTools size={40} className="text-stone-800" />,
       services: [
         "Układanie glazury",
         "Montaż płyt gipsowych",
@@ -49,49 +49,52 @@ const ServicesSection = () => {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px 0px" });
 
   return (
-    <section
-      ref={sectionRef}
-      className="flex flex-col justify-center gap-5 max-w-[966px] m-0 mx-auto py-[7rem]"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <SectionHeader text={"Usługi"} />
-      </motion.div>
+    <section ref={sectionRef} className="py-16 md:py-24">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mb-12 text-center"
+        >
+          <SectionHeader text={"Nasze Usługi"} />
+          <p className="mt-4 text-xl text-slate-200">
+            Profesjonalne rozwiązania dla Twojego domu
+          </p>
+        </motion.div>
 
-      <motion.div
-        className="flex gap-5 justify-center items-center flex-col lg:flex-row lg:justify-between flex-wrap lg:flex-nowrap"
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        variants={{
-          hidden: { opacity: 0 },
-          visible: {
-            opacity: 1,
-            transition: {
-              staggerChildren: 0.2,
+        <motion.div
+          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.2,
+              },
             },
-          },
-        }}
-      >
-        {servicesData.map((service) => (
-          <motion.div
-            key={service.label}
-            variants={{
-              hidden: { opacity: 0, y: 30 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            <ServicesList
-              label={service.label}
-              icon={service.icon}
-              services={service.services}
-            />
-          </motion.div>
-        ))}
-      </motion.div>
+          }}
+        >
+          {servicesData.map((service) => (
+            <motion.div
+              key={service.label}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              <ServicesList
+                label={service.label}
+                icon={service.icon}
+                services={service.services}
+              />
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </section>
   );
 };
