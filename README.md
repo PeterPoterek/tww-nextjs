@@ -18,8 +18,6 @@ Check out the live version of the website: [TWW Website](https://tww-nextjs.verc
 
 ## Features ✨
 
-<!--  -->
-
 ### Website Layout 💡
 
 - **Responsive Design**: Fully responsive design using TailwindCSS, ensuring the site is optimized for various screen sizes.
