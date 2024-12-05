@@ -31,6 +31,7 @@ const CreationSection = () => {
 
   return (
     <section
+      id={"creation"}
       ref={ref}
       className="max-w-[966px] pt-[8.5rem] m-0 mx-auto scroll-mt-28"
     >

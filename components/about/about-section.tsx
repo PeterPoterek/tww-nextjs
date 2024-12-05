@@ -10,6 +10,7 @@ const AboutSection = () => {
 
   return (
     <section
+      id={"about"}
       className="flex max-w-[927px] m-0 mx-auto pt-20 pb-[8.5rem] scroll-mt-28 px-4 sm:px-6 md:px-8"
       ref={ref}
     >

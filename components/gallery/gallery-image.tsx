@@ -10,7 +10,12 @@ type GalleryImageProps = {
   index?: number;
 };
 
-export default function GalleryImage({ src, alt, isGridImage, index }: GalleryImageProps) {
+export default function GalleryImage({
+  src,
+  alt,
+  isGridImage,
+  index,
+}: GalleryImageProps) {
   return (
     <>
       {isGridImage && <Skeleton className="absolute inset-0 z-10" />}
@@ -18,7 +23,11 @@ export default function GalleryImage({ src, alt, isGridImage, index }: GalleryIm
         src={src}
         alt={alt}
         fill
-        sizes={isGridImage ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" : "100vw"}
+        sizes={
+          isGridImage
+            ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            : "100vw"
+        }
         className={`object-contain ${isGridImage ? "object-cover" : ""}`}
         priority={isGridImage && index === 0}
       />
