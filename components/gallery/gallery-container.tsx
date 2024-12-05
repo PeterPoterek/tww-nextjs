@@ -1,19 +1,49 @@
 "use client";
 
+import useGalleryStore from "@/app/store/galleryStore";
 import { GalleryImage as GalleryImageType } from "@prisma/client";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, Suspense, useTransition } from "react";
+import Link from "next/link";
+
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+
 import GalleryImage from "./gallery-image";
-import useGalleryStore from "@/app/store/galleryStore";
 import GalleryButton from "./gallery-button";
-import Link from "next/link";
+import Spinner from "@/components/spinner";
 
 type GalleryContainerProps = {
   initialGalleryImages: GalleryImageType[];
 };
+
+function GalleryGrid({
+  images,
+  onImageClick,
+}: {
+  images: GalleryImageType[];
+  onImageClick: (index: number) => void;
+}) {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10 w-full max-w-[1128px] relative">
+      {images.map((image, index) => (
+        <div
+          key={image.id}
+          className="aspect-square relative overflow-hidden rounded-md cursor-pointer"
+          onClick={() => onImageClick(index)}
+        >
+          <GalleryImage
+            src={image.url}
+            alt={image.fileName || `Image ${index + 1}`}
+            isGridImage={true}
+            index={index}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function GalleryContainer({
   initialGalleryImages,
@@ -28,6 +58,7 @@ export default function GalleryContainer({
     currentPage,
   } = useGalleryStore();
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
     setAllImages(initialGalleryImages);
@@ -38,38 +69,34 @@ export default function GalleryContainer({
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
-      setCurrentPage(newPage);
-      if (containerRef.current) {
-        containerRef.current.scrollIntoView({ behavior: "smooth" });
-      }
+      startTransition(() => {
+        setCurrentPage(newPage);
+        if (containerRef.current) {
+          containerRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+      });
     }
+  };
+
+  const handleImageClick = (index: number) => {
+    setOpen(true);
+    setLightboxIndex(index);
   };
 
   return (
     <div
       ref={containerRef}
-      className="flex flex-col items-center pt-[5rem] p-5 scroll-mt-28 "
+      className="flex flex-col items-center mt-[5rem] p-5"
     >
-      {/* Image Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10 w-full max-w-[1128px] relative">
-        {currentImages.map((image, index) => (
-          <div
-            key={image.id}
-            className="aspect-square relative overflow-hidden rounded-md cursor-pointer"
-            onClick={() => {
-              setOpen(true);
-              setLightboxIndex(index);
-            }}
-          >
-            <GalleryImage
-              src={image.url}
-              alt={image.fileName || `Image ${index + 1}`}
-              isGridImage={true}
-              index={index}
-            />
+      <Suspense fallback={<Spinner size={25} />}>
+        {isPending ? (
+          <div className="w-full h-[50vh] flex items-center justify-center">
+            <Spinner size={25} />
           </div>
-        ))}
-      </div>
+        ) : (
+          <GalleryGrid images={currentImages} onImageClick={handleImageClick} />
+        )}
+      </Suspense>
 
       {/* Pagination Controls */}
       <div className="flex flex-col sm:flex-row items-center justify-center mt-4 gap-4 w-full max-w-[1128px]">
@@ -80,7 +107,7 @@ export default function GalleryContainer({
           <Link href="/gallery">
             <GalleryButton
               onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
+              disabled={currentPage === 1 || isPending}
             >
               Poprzednia
             </GalleryButton>
@@ -92,7 +119,7 @@ export default function GalleryContainer({
           <Link href="/gallery">
             <GalleryButton
               onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
+              disabled={currentPage === totalPages || isPending}
             >
               Następna
             </GalleryButton>
