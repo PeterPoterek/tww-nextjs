@@ -40,7 +40,10 @@ const ReviewsSection = () => {
   ];
 
   return (
-    <section className="pt-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+    <section
+      id={"reviews"}
+      className="pt-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24"
+    >
       <motion.div
         ref={headerRef}
         initial={{ opacity: 0, y: 20 }}

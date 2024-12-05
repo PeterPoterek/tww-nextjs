@@ -17,7 +17,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen">
+    <section id={"landing"} className="relative min-h-screen">
       <Image
         src="/landing-image.jpg"
         alt=""
