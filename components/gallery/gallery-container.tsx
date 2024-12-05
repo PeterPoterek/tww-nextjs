@@ -71,9 +71,6 @@ export default function GalleryContainer({
     if (newPage >= 1 && newPage <= totalPages) {
       startTransition(() => {
         setCurrentPage(newPage);
-        if (containerRef.current) {
-          containerRef.current.scrollIntoView({ behavior: "smooth" });
-        }
       });
     }
   };
