@@ -9,6 +9,7 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 import GalleryImage from "./gallery-image";
 import useGalleryStore from "@/app/store/galleryStore";
 import GalleryButton from "./gallery-button";
+import Link from "next/link";
 
 type GalleryContainerProps = {
   initialGalleryImages: GalleryImageType[];
@@ -47,7 +48,7 @@ export default function GalleryContainer({
   return (
     <div
       ref={containerRef}
-      className="flex flex-col items-center pt-[5rem] p-5"
+      className="flex flex-col items-center pt-[5rem] p-5 scroll-mt-28 "
     >
       {/* Image Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10 w-full max-w-[1128px] relative">
@@ -76,21 +77,26 @@ export default function GalleryContainer({
           Strona {currentPage} z {totalPages}
         </span>
         <div className="flex justify-center items-center gap-4 w-full sm:w-auto">
-          <GalleryButton
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            Poprzednia
-          </GalleryButton>
+          <Link href="/gallery">
+            <GalleryButton
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Poprzednia
+            </GalleryButton>
+          </Link>
           <span className="text-lg font-semibold hidden sm:inline-block whitespace-nowrap">
             Strona {currentPage} z {totalPages}
           </span>
-          <GalleryButton
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-          >
-            Następna
-          </GalleryButton>
+
+          <Link href="/gallery">
+            <GalleryButton
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Następna
+            </GalleryButton>
+          </Link>
         </div>
       </div>
 
