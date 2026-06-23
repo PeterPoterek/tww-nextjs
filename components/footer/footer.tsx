@@ -10,7 +10,7 @@ const Footer = () => {
       data: [
         { dataLabel: "Imię", value: "Piotr" },
         { dataLabel: "Nazwisko", value: "Poterek" },
-        { dataLabel: "NIP", value: "9441361022" },
+        { dataLabel: "NIP", value: "6762720724" },
       ],
     },
     {
