@@ -35,7 +35,9 @@ const AboutSection = () => {
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
         >
           Jesteśmy doświadczoną firmą remontową, oferującą kompleksowe
-          wykończenie mieszkań i łazienek. Nasze usługi obejmują biały montaż,
+          wykończenie mieszkań i łazienek. Nasze usługi obejmują wykonywanie
+          instalacji elektrycznych, wykonywanie instalacji wodno-kanalizacyjnych 
+          cieplnych gazowych i klimatyzacyjnych,
           malowanie, malowanie natryskowe, montaż paneli, drzwi, kominki oraz
           kamień ozdobny. Doradzamy w wyborze materiałów, a nasze doświadczenie
           w budownictwie sięga 1991 roku. Terminowość i porządek to nasze główne

@@ -48,7 +48,7 @@ const ContactSection = () => {
               label="Email"
               value="poterpiotr@gmail.com"
             />
-            <ContactItem icon="file-text" label="NIP" value="9441361022" />
+            <ContactItem icon="file-text" label="NIP" value="6762720724" />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 50 }}
